@@ -1,11 +1,11 @@
 {
-  "name": "edge-currency-monero",
-  "version": "0.3.2",
-  "description": "Edge Monero currency plugin",
+  "name": "edge-currency-beldex",
+  "version": "1.3.3",
+  "description": "Edge Beldex currency plugin",
   "homepage": "https://edge.app",
   "repository": {
     "type": "git",
-    "url": "git@github.com:EdgeApp/edge-currency-monero.git"
+    "url": "git@github.com:Beldex-Coin/edge-currency-beldex.git"
   },
   "license": "SEE LICENSE IN LICENSE",
   "author": "Edge (Airbitz, Inc)",
@@ -45,7 +45,7 @@
     "biggystring": "^3.0.0",
     "buffer": "^5.0.6",
     "jsonschema": "^1.1.1",
-    "mymonero-core-js": "git://github.com/EdgeApp/mymonero-core-js.git#matthew/txPrivateKey",
+    "beldex-core-js": "git://github.com/Beldex-coin/beldex-core-js.git#fc031a082c91b5015e1748aed72308ce3fd806ab",
     "uri-js": "^3.0.2"
   },
   "devDependencies": {

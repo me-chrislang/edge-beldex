@@ -16,7 +16,7 @@ import {
   type EdgeParsedUri,
   type EdgeWalletInfo
 } from 'edge-core-js/types'
-import { initMonero } from 'mymonero-core-js'
+import { initMonero } from 'beldex-core-js'
 import { parse, serialize } from 'uri-js'
 
 import { MoneroEngine } from './xmrEngine.js'
@@ -54,7 +54,7 @@ async function makeMoneroTools(
     appUserAgentProduct: 'tester',
     appUserAgentVersion: '0.0.1',
     apiKey: initOptions.apiKey,
-    apiServer: 'https://edge.mymonero.com:8443',
+    apiServer: 'https://edge.beldex.io',
     fetch: io.fetch,
     randomBytes: io.random
   }
