@@ -204,7 +204,7 @@ class MoneroEngine {
         this.addToLoop('saveWalletLoop', SAVE_DATASTORE_MILLISECONDS)
       }
     } catch (e) {
-      this.log.error('Error logging into mymonero', e)
+      this.log.error('Error logging into beldex', e)
     }
   }
 
@@ -265,8 +265,8 @@ class MoneroEngine {
       blockHeight = 0
     }
 
-    const date = Date.parse(tx.timestamp) / 1000
-
+    // const date = Date.parse(tx.timestamp) / 1000
+    const date = tx.timestamp;
     const edgeTransaction: EdgeTransaction = {
       txid: tx.hash,
       date,
