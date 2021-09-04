@@ -264,7 +264,7 @@ class MoneroEngine {
     if (tx.mempool) {
       blockHeight = 0
     }
-
+    this.log.warn('processTransaction called() Tx is', JSON.stringify(tx))
     // const date = Date.parse(tx.timestamp) / 1000
     const date = tx.timestamp;
     const edgeTransaction: EdgeTransaction = {
@@ -311,7 +311,7 @@ class MoneroEngine {
           )
           this.transactionsChangedArray = []
         } else {
-          // this.log(sprintf('Old transaction. No Update: %s', tx.hash))
+          this.log.warn('Old transaction. No Update: %s', tx.hash)
         }
       }
     }
