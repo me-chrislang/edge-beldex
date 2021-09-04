@@ -31,7 +31,7 @@ export class WalletLocalData {
   constructor(jsonString: string | null) {
     this.blockHeight = 0
 
-    const totalBalances: { [currencyCode: string]: string } = { XMR: '0' }
+    const totalBalances: { [currencyCode: string]: string } = { BDX: '0' }
     this.totalBalances = totalBalances
 
     this.nextNonce = '0'

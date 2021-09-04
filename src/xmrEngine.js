@@ -235,9 +235,9 @@ class MoneroEngine {
         addrResult.totalSent
       )
 
-      if (this.walletLocalData.totalBalances.XMR !== nativeBalance) {
-        this.walletLocalData.totalBalances.XMR = nativeBalance
-        this.edgeTxLibCallbacks.onBalanceChanged('XMR', nativeBalance)
+      if (this.walletLocalData.totalBalances.BDX !== nativeBalance) {
+        this.walletLocalData.totalBalances.BDX = nativeBalance
+        this.edgeTxLibCallbacks.onBalanceChanged('BDX', nativeBalance)
       }
       this.walletLocalData.lockedXmrBalance = addrResult.lockedBalance
     } catch (e) {
@@ -270,7 +270,7 @@ class MoneroEngine {
     const edgeTransaction: EdgeTransaction = {
       txid: tx.hash,
       date,
-      currencyCode: 'XMR',
+      currencyCode: 'BDX',
       blockHeight,
       nativeAmount: netNativeAmount,
       networkFee: nativeNetworkFee,
@@ -701,7 +701,7 @@ class MoneroEngine {
       throw new Error('Error: only one output allowed')
     }
 
-    const currencyCode: string = 'XMR'
+    const currencyCode: string = 'BDX'
     // }
     edgeSpendInfo.currencyCode = currencyCode
 
@@ -723,7 +723,7 @@ class MoneroEngine {
       throw new NoAmountSpecifiedError()
     }
 
-    if (bns.gte(nativeAmount, this.walletLocalData.totalBalances.XMR)) {
+    if (bns.gte(nativeAmount, this.walletLocalData.totalBalances.BDX)) {
       if (bns.gte(this.walletLocalData.lockedXmrBalance, nativeAmount)) {
         throw new PendingFundsError()
       } else {

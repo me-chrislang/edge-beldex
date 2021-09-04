@@ -61,14 +61,14 @@ async function makeMoneroTools(
   const myMoneroApi = new MyMoneroApi(options)
 
   const moneroPlugin: EdgeCurrencyTools = {
-    pluginName: 'monero',
+    pluginName: 'beldex',
     currencyInfo,
     myMoneroApi,
 
     createPrivateKey: async (walletType: string) => {
       const type = walletType.replace('wallet:', '')
 
-      if (type === 'monero') {
+      if (type === 'beldex') {
         const result = await myMoneroApi.createWallet()
         return {
           moneroKey: result.mnemonic,
@@ -82,7 +82,7 @@ async function makeMoneroTools(
 
     derivePublicKey: async (walletInfo: EdgeWalletInfo) => {
       const type = walletInfo.type.replace('wallet:', '')
-      if (type === 'monero') {
+      if (type === 'beldex') {
         const result = await myMoneroApi.createWalletFromMnemonic(
           walletInfo.keys.moneroKey
         )
@@ -105,7 +105,7 @@ async function makeMoneroTools(
 
       if (
         typeof parsedUri.scheme !== 'undefined' &&
-        parsedUri.scheme !== 'monero'
+        parsedUri.scheme !== 'beldex'
       ) {
         throw new Error('InvalidUriError') // possibly scanning wrong crypto type
       }
@@ -130,13 +130,13 @@ async function makeMoneroTools(
 
       const amountStr = getParameterByName('amount', uri)
       if (amountStr && typeof amountStr === 'string') {
-        const denom = getDenomInfo('XMR')
+        const denom = getDenomInfo('BDX')
         if (!denom) {
           throw new Error('InternalErrorInvalidCurrencyCode')
         }
         nativeAmount = bns.mul(amountStr, denom.multiplier)
         nativeAmount = bns.toFixed(nativeAmount, 0, 0)
-        currencyCode = 'XMR'
+        currencyCode = 'BDX'
       }
       const uniqueIdentifier = getParameterByName('tx_payment_id', uri)
       const label = getParameterByName('label', uri)
@@ -189,7 +189,7 @@ async function makeMoneroTools(
         let queryString: string = ''
 
         if (typeof obj.nativeAmount === 'string') {
-          const currencyCode: string = 'XMR'
+          const currencyCode: string = 'BDX'
           const nativeAmount: string = obj.nativeAmount
           const denom = getDenomInfo(currencyCode)
           if (!denom) {
