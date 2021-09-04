@@ -2,10 +2,10 @@
 
 import 'regenerator-runtime/runtime'
 
-import { makeMoneroPlugin } from './xmrPlugin.js'
+import { makeBeldexPlugin } from './xmrPlugin.js'
 
 const edgeCorePlugins = {
-  monero: makeMoneroPlugin
+  beldex: makeBeldexPlugin
 }
 
 export default edgeCorePlugins

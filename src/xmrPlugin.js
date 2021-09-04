@@ -221,13 +221,13 @@ async function makeMoneroTools(
   return moneroPlugin
 }
 
-export function makeMoneroPlugin(
+export function makeBeldexPlugin(
   opts: EdgeCorePluginOptions
 ): EdgeCurrencyPlugin {
   const { io, nativeIo, initOptions = { apiKey: '' } } = opts
 
-  if (nativeIo['edge-currency-monero']) {
-    const { callMyMonero } = nativeIo['edge-currency-monero']
+  if (nativeIo['edge-currency-beldex']) {
+    const { callMyMonero } = nativeIo['edge-currency-beldex']
     global.moneroCore = { methodByString: callMyMonero }
   }
 
