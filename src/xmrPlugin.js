@@ -228,7 +228,7 @@ export function makeBeldexPlugin(
 
   if (nativeIo['edge-currency-beldex']) {
     const { callBeldex } = nativeIo['edge-currency-beldex']
-    global.moneroCore = { methodByString: callBeldex }
+    global.beldexCore = { methodByString: callBeldex }
   }
 
   let toolsPromise: Promise<EdgeCurrencyTools>

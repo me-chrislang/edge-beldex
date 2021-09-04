@@ -143,7 +143,7 @@ class MoneroEngine {
 
     const response = await this.io.fetch(url, opts)
     if (!response.ok) {
-      const cleanUrl = url.replace(global.moneroApiKey, 'private')
+      const cleanUrl = url.replace(global.beldexApiKey, 'private')
       throw new Error(
         `The server returned error code ${response.status} for ${cleanUrl}`
       )
