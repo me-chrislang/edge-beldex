@@ -172,8 +172,10 @@ class MoneroEngine {
 
   updateOnAddressesChecked(numTx: number, totalTxs: number) {
     if (this.addressesChecked) {
+      this.log.warn('updateOnAddressesChecked called()', 'return', this.addressesChecked)
       return
     }
+    this.log.warn('updateOnAddressesChecked called()', numTx, totalTxs)
     if (numTx !== totalTxs) {
       const progress = numTx / totalTxs
       this.edgeTxLibCallbacks.onAddressesChecked(progress)
@@ -337,7 +339,7 @@ class MoneroEngine {
       }
       const transactions = await this.myMoneroApi.getTransactions(params)
 
-      this.log('Fetched transactions count: ' + transactions.length)
+      this.log.warn('Fetched transactions count: ' + transactions.length)
 
       // Get transactions
       // Iterate over transactions in address
@@ -350,7 +352,7 @@ class MoneroEngine {
       }
       this.updateOnAddressesChecked(transactions.length, transactions.length)
     } catch (e) {
-      this.log.error('checkTransactionsInnerLoop', e)
+      this.log.error('checkTransactionsInnerLoop error', e.message, e.stack)
       checkAddressSuccess = false
     }
     return checkAddressSuccess
