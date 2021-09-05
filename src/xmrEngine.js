@@ -167,6 +167,7 @@ class MoneroEngine {
       body: JSON.stringify(body)
     }
     const url = `${this.currentSettings.otherSettings.mymoneroApiServers[0]}/${cmd}`
+    this.log.warn('edge-currency-beldex url is', url, JSON.stringify(options))
     return this.fetchPost(url, options)
   }
 
@@ -193,6 +194,7 @@ class MoneroEngine {
   async loginInnerLoop() {
     try {
       const result = await this.fetchPostMyMonero('login')
+      console.log('login result', result)
       if ('new_address' in result && !this.loggedIn) {
         this.loggedIn = true
         this.walletLocalData.hasLoggedIn = true
@@ -280,7 +282,7 @@ class MoneroEngine {
       signedTx: '',
       otherParams: {}
     }
-
+    this.log.warn('processTransaction called() edge Transaction is', 'tx.times', tx.timestamp, 'new txn', JSON.stringify(edgeTransaction))
     const idx = this.findTransaction(PRIMARY_CURRENCY, tx.hash)
     if (idx === -1) {
       this.log(`New transaction: ${tx.hash}`)
