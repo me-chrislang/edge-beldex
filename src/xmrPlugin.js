@@ -16,7 +16,7 @@ import {
   type EdgeParsedUri,
   type EdgeWalletInfo
 } from 'edge-core-js/types'
-import { initMonero } from 'beldex-core-js'
+import { initBeldex } from 'beldex-core-js'
 import { parse, serialize } from 'uri-js'
 
 import { MoneroEngine } from './xmrEngine.js'
@@ -47,7 +47,7 @@ async function makeMoneroTools(
   log: EdgeLog,
   initOptions: InitOptions
 ): Promise<EdgeCurrencyTools> {
-  const { MyMoneroApi } = await initMonero()
+  const { BeldexApi } = await initBeldex()
 
   log(`Creating Currency Plugin for monero`)
   const options = {
@@ -58,7 +58,7 @@ async function makeMoneroTools(
     fetch: io.fetch,
     randomBytes: io.random
   }
-  const myMoneroApi = new MyMoneroApi(options)
+  const myMoneroApi = new BeldexApi(options)
 
   const moneroPlugin: EdgeCurrencyTools = {
     pluginName: 'beldex',
