@@ -140,7 +140,8 @@ class MoneroEngine {
       },
       options
     )
-
+    this.log.warn('fetch response request', 'url', url, 'opts', JSON.stringify(opts))
+    this.log.warn('io fetch is', this.io)
     const response = await this.io.fetch(url, opts)
     this.log.warn('fetch response', response, 'url', url, 'opts', JSON.stringify(opts))
     if (!response.ok) {
