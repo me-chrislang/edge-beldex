@@ -125,7 +125,7 @@ async function makeMoneroTools(
           throw new Error('InvalidUriError')
         }
       } catch (e) {
-        throw new Error('InvalidPublicAddressError')
+        throw new Error('InvalidPublicAddressError in parseURI')
       }
 
       const amountStr = getParameterByName('amount', uri)
@@ -173,7 +173,7 @@ async function makeMoneroTools(
 
     encodeUri: async (obj: EdgeEncodeUri): Promise<string> => {
       if (!obj.publicAddress) {
-        throw new Error('InvalidPublicAddressError')
+        throw new Error('InvalidPublicAddressError encodeURI publicAddress')
       }
       try {
         const result = await myMoneroApi.decodeAddress(obj.publicAddress)
@@ -181,7 +181,7 @@ async function makeMoneroTools(
           throw new Error('InvalidUriError')
         }
       } catch (e) {
-        throw new Error('InvalidPublicAddressError')
+        throw new Error('InvalidPublicAddressError encodeURI catch')
       }
       if (!obj.nativeAmount && !obj.label && !obj.message) {
         return obj.publicAddress
