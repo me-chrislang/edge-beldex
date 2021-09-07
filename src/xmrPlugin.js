@@ -173,7 +173,7 @@ async function makeMoneroTools(
 
     encodeUri: async (obj: EdgeEncodeUri): Promise<string> => {
       if (!obj.publicAddress) {
-        throw new Error('InvalidPublicAddressError encodeURI publicAddress')
+        throw new Error(`InvalidPublicAddressError encodeURI publicAddress ${JSON.stringify(obj)}`)
       }
       try {
         const result = await myMoneroApi.decodeAddress(obj.publicAddress)
@@ -208,10 +208,11 @@ async function makeMoneroTools(
         queryString = queryString.substr(0, queryString.length - 1)
 
         const serializeObj = {
-          scheme: 'monero',
+          scheme: 'beldex',
           path: obj.publicAddress,
           query: queryString
         }
+        log.warn('beldex serialize', serializeObj, 'urls is', url)
         const url = serialize(serializeObj)
         return url
       }
