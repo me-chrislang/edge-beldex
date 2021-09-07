@@ -49,7 +49,7 @@ async function makeMoneroTools(
 ): Promise<EdgeCurrencyTools> {
   const { MyMoneroApi } = await initMonero()
 
-  log(`Creating Currency Plugin for monero`)
+  log(`Creating Currency Plugin for beldex`)
   const options = {
     appUserAgentProduct: 'tester',
     appUserAgentVersion: '0.0.1',
@@ -208,7 +208,7 @@ async function makeMoneroTools(
         queryString = queryString.substr(0, queryString.length - 1)
 
         const serializeObj = {
-          scheme: 'monero',
+          scheme: 'beldex',
           path: obj.publicAddress,
           query: queryString
         }

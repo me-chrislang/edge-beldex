@@ -14,11 +14,15 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js$|jsx/,
         use: { loader: 'babel-loader', options: babelOptions }
       }
     ]
   },
+  "externals": {
+    "fs": 'require("fs")',
+    "electron": 'require("electron")'
+},
   output: {
     filename: 'edge-currency-monero.js',
     path: path.join(path.resolve(__dirname), 'lib/react-native')
