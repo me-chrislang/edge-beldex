@@ -208,7 +208,7 @@ async function makeMoneroTools(
         queryString = queryString.substr(0, queryString.length - 1)
 
         const serializeObj = {
-          scheme: 'beldex',
+          scheme: 'monero',
           path: obj.publicAddress,
           query: queryString
         }
