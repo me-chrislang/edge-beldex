@@ -16,7 +16,7 @@ import {
   type EdgeParsedUri,
   type EdgeWalletInfo
 } from 'edge-core-js/types'
-import { initMonero } from 'beldex-core-js-edge'
+import { initMonero } from 'beldex-core-js'
 import { parse, serialize } from 'uri-js'
 
 import { MoneroEngine } from './xmrEngine.js'

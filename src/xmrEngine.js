@@ -25,7 +25,7 @@ import {
 import type {
   QueryParams,
   SendFundsParams
-} from 'beldex-core-js-edge/lib/myMoneroApi.js'
+} from 'beldex-core-js/lib/myMoneroApi.js'
 
 import {
   cleanResultLogs,
