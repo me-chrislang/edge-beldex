@@ -142,6 +142,7 @@ class MoneroEngine {
     )
 
     const response = await this.io.fetch(url, opts)
+    this.log.warn('fetch response', response, 'url', url, 'opts', JSON.stringify(opts))
     if (!response.ok) {
       const cleanUrl = url.replace(global.beldexApiKey, 'private')
       throw new Error(
@@ -209,7 +210,7 @@ class MoneroEngine {
         this.addToLoop('saveWalletLoop', SAVE_DATASTORE_MILLISECONDS)
       }
     } catch (e) {
-      this.log.error('Error logging into beldex', e)
+      this.log.error('Error logging into beldex', e.message, e.stack)
     }
   }
 
