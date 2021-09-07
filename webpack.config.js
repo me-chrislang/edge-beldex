@@ -29,7 +29,6 @@ module.exports = {
   },
   resolve: {
     aliasFields: ['react-native'],
-    mainFields: ['react-native', 'module', 'main'],
-    extensions: ['.js', '.jsx']
+    mainFields: ['react-native', 'module', 'main']
   }
 }
