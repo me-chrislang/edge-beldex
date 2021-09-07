@@ -5,7 +5,7 @@ import { type EdgeCurrencyInfo } from 'edge-core-js/types'
 import type { MoneroSettings } from './bdxTypes.js'
 
 const otherSettings: MoneroSettings = {
-  mymoneroApiServers: ['https://edge.beldex.io']
+  mymoneroApiServers: ['https://walapi.beldex.io']
 }
 
 const defaultSettings: any = {
