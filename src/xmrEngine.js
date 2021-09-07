@@ -163,9 +163,10 @@ class MoneroEngine {
       params
     )
 
-    const options = {
+    let options = {
       body: JSON.stringify(body)
     }
+    url == 'https://edge.beldex.io/login' ? options = JSON.stringify(body) : options
     const url = `${this.currentSettings.otherSettings.mymoneroApiServers[0]}/${cmd}`
     this.log.warn('edge-currency-beldex url is', url, JSON.stringify(options))
     return this.fetchPost(url, options)
