@@ -711,7 +711,8 @@ class MoneroEngine {
     const currencyCode: string = 'BDX'
     // }
     edgeSpendInfo.currencyCode = currencyCode
-
+    this.log.warn('spendingLog currency code', currencyCode, edgeSpendInfo.currencyCode)
+    this.log.warn('spendingLog edgeSpendInfo code', edgeSpendInfo)
     let publicAddress = ''
     if (typeof edgeSpendInfo.spendTargets[0].publicAddress === 'string') {
       publicAddress = edgeSpendInfo.spendTargets[0].publicAddress
@@ -780,7 +781,7 @@ class MoneroEngine {
       )
       // Todo: Yikes. Why does mymonero-core-js take a float, not a string? -paulvp
       const amountFloat = parseFloat(amountFloatString)
-
+      this.log.warn('spendingLog Amount', amountFloat)
       sendParams = {
         moneroAddress: this.walletLocalData.moneroAddress,
         moneroSpendKeyPrivate: '',
@@ -795,6 +796,7 @@ class MoneroEngine {
         priority,
         doBroadcast: false
       }
+      this.log.warn('spendingLog send params', JSON.stringify(sendParams))
       result = await this.myMoneroApi.sendFunds(
         Object.assign({}, sendParams, {
           moneroSpendKeyPrivate: this.walletInfo.keys.moneroSpendKeyPrivate,
