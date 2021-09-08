@@ -87,10 +87,10 @@ async function makeMoneroTools(
           walletInfo.keys.moneroKey
         )
         return {
-          moneroAddress: result.moneroAddress,
-          moneroViewKeyPrivate: result.moneroViewKeyPrivate,
-          moneroViewKeyPublic: result.moneroViewKeyPublic,
-          moneroSpendKeyPublic: result.moneroSpendKeyPublic
+          beldexAddress: result.moneroAddress,
+          beldexViewKeyPrivate: result.moneroViewKeyPrivate,
+          beldexViewKeyPublic: result.moneroViewKeyPublic,
+          beldexSpendKeyPublic: result.moneroSpendKeyPublic
         }
       } else {
         throw new Error('InvalidWalletType')

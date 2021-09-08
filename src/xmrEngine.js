@@ -121,10 +121,10 @@ class MoneroEngine {
       typeof this.walletInfo.keys.moneroSpendKeyPublic !== 'string'
     ) {
       const pubKeys = await this.currencyPlugin.derivePublicKey(this.walletInfo)
-      this.walletInfo.keys.moneroAddress = pubKeys.moneroAddress
-      this.walletInfo.keys.moneroViewKeyPrivate = pubKeys.moneroViewKeyPrivate
-      this.walletInfo.keys.moneroViewKeyPublic = pubKeys.moneroViewKeyPublic
-      this.walletInfo.keys.moneroSpendKeyPublic = pubKeys.moneroSpendKeyPublic
+      this.walletInfo.keys.moneroAddress = pubKeys.beldexAddress
+      this.walletInfo.keys.moneroViewKeyPrivate = pubKeys.beldexViewKeyPrivate
+      this.walletInfo.keys.moneroViewKeyPublic = pubKeys.beldexViewKeyPublic
+      this.walletInfo.keys.moneroSpendKeyPublic = pubKeys.beldexSpendKeyPublic
     }
   }
 
