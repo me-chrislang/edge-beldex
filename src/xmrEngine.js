@@ -342,7 +342,7 @@ class MoneroEngine {
         moneroSpendKeyPublic: this.walletInfo.keys.beldexSpendKeyPublic,
         moneroViewKeyPrivate: this.walletLocalData.moneroViewKeyPrivate
       }
-      this.log.warn('Fetched params', params)
+      this.log.warn('Fetched params', params, 'and wallet keys', JSON.stringify(this.walletInfo.keys))
       const transactions = await this.myMoneroApi.getTransactions(params)
       this.log.warn('Fetched transactions: ' + transactions)
       this.log.warn('Fetched transactions count: ' + transactions.length)
