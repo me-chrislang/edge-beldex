@@ -115,16 +115,16 @@ class MoneroEngine {
 
   async init() {
     if (
-      typeof this.walletInfo.keys.moneroAddress !== 'string' ||
-      typeof this.walletInfo.keys.moneroViewKeyPrivate !== 'string' ||
-      typeof this.walletInfo.keys.moneroViewKeyPublic !== 'string' ||
-      typeof this.walletInfo.keys.moneroSpendKeyPublic !== 'string'
+      typeof this.walletInfo.keys.beldexAddress !== 'string' ||
+      typeof this.walletInfo.keys.beldexViewKeyPrivate !== 'string' ||
+      typeof this.walletInfo.keys.beldexViewKeyPublic !== 'string' ||
+      typeof this.walletInfo.keys.beldexSpendKeyPublic !== 'string'
     ) {
       const pubKeys = await this.currencyPlugin.derivePublicKey(this.walletInfo)
-      this.walletInfo.keys.moneroAddress = pubKeys.beldexAddress
-      this.walletInfo.keys.moneroViewKeyPrivate = pubKeys.beldexViewKeyPrivate
-      this.walletInfo.keys.moneroViewKeyPublic = pubKeys.beldexViewKeyPublic
-      this.walletInfo.keys.moneroSpendKeyPublic = pubKeys.beldexSpendKeyPublic
+      this.walletInfo.keys.beldexAddress = pubKeys.beldexAddress
+      this.walletInfo.keys.beldexViewKeyPrivate = pubKeys.beldexViewKeyPrivate
+      this.walletInfo.keys.beldexViewKeyPublic = pubKeys.beldexViewKeyPublic
+      this.walletInfo.keys.beldexSpendKeyPublic = pubKeys.beldexSpendKeyPublic
     }
   }
 
@@ -222,8 +222,8 @@ class MoneroEngine {
     try {
       const params: QueryParams = {
         moneroAddress: this.walletLocalData.moneroAddress,
-        moneroSpendKeyPrivate: this.walletInfo.keys.moneroSpendKeyPrivate,
-        moneroSpendKeyPublic: this.walletInfo.keys.moneroSpendKeyPublic,
+        moneroSpendKeyPrivate: this.walletInfo.keys.beldexSpendKeyPrivate,
+        moneroSpendKeyPublic: this.walletInfo.keys.beldexSpendKeyPublic,
         moneroViewKeyPrivate: this.walletLocalData.moneroViewKeyPrivate
       }
 
@@ -338,8 +338,8 @@ class MoneroEngine {
     try {
       const params: QueryParams = {
         moneroAddress: this.walletLocalData.moneroAddress,
-        moneroSpendKeyPrivate: this.walletInfo.keys.moneroSpendKeyPrivate,
-        moneroSpendKeyPublic: this.walletInfo.keys.moneroSpendKeyPublic,
+        moneroSpendKeyPrivate: this.walletInfo.keys.beldexSpendKeyPrivate,
+        moneroSpendKeyPublic: this.walletInfo.keys.beldexSpendKeyPublic,
         moneroViewKeyPrivate: this.walletLocalData.moneroViewKeyPrivate
       }
       const transactions = await this.myMoneroApi.getTransactions(params)
@@ -785,7 +785,7 @@ class MoneroEngine {
       sendParams = {
         moneroAddress: this.walletLocalData.moneroAddress,
         moneroSpendKeyPrivate: '',
-        moneroSpendKeyPublic: this.walletInfo.keys.moneroSpendKeyPublic,
+        moneroSpendKeyPublic: this.walletInfo.keys.beldexSpendKeyPublic,
         moneroViewKeyPrivate: this.walletLocalData.moneroViewKeyPrivate,
         targetAddress: publicAddress,
         floatAmount: amountFloat,
@@ -799,7 +799,7 @@ class MoneroEngine {
       this.log.warn('spendingLog send params', JSON.stringify(sendParams))
       result = await this.myMoneroApi.sendFunds(
         Object.assign({}, sendParams, {
-          moneroSpendKeyPrivate: this.walletInfo.keys.moneroSpendKeyPrivate,
+          moneroSpendKeyPrivate: this.walletInfo.keys.beldexSpendKeyPrivate,
           onStatus: (code: number) => {
             this.log.warn(`makeSpend:SendFunds - onStatus:${code.toString()}`)
           }
@@ -854,7 +854,7 @@ class MoneroEngine {
       sendParams.doBroadcast = true
       const result = await this.myMoneroApi.sendFunds(
         Object.assign({}, sendParams, {
-          moneroSpendKeyPrivate: this.walletInfo.keys.moneroSpendKeyPrivate,
+          moneroSpendKeyPrivate: this.walletInfo.keys.beldexSpendKeyPrivate,
           onStatus: (code: number) => {
             this.log.warn(`broadcastTx:SendFunds - onStatus:${code.toString()}`)
           }
@@ -889,15 +889,15 @@ class MoneroEngine {
   }
 
   getDisplayPrivateSeed() {
-    if (this.walletInfo.keys && this.walletInfo.keys.moneroKey) {
-      return this.walletInfo.keys.moneroKey
+    if (this.walletInfo.keys && this.walletInfo.keys.beldexKey) {
+      return this.walletInfo.keys.beldexKey
     }
     return ''
   }
 
   getDisplayPublicSeed() {
-    if (this.walletInfo.keys && this.walletInfo.keys.moneroViewKeyPrivate) {
-      return this.walletInfo.keys.moneroViewKeyPrivate
+    if (this.walletInfo.keys && this.walletInfo.keys.beldexViewKeyPrivate) {
+      return this.walletInfo.keys.beldexViewKeyPrivate
     }
     return ''
   }
