@@ -73,7 +73,7 @@
     "webpack-cli": "^3.2.3"
   },
   "peerDependencies": {
-    "react-native-beldex-core": "^1.0.6"
+    "react-native-beldex-core": "^1.0.7"
   },
   "react-native": "./lib/xmrIndex.js"
 }
