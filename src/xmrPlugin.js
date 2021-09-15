@@ -259,26 +259,26 @@ export function makeBeldexPlugin(
       )
       moneroEngine.walletLocalData = new WalletLocalData(result)
       moneroEngine.walletLocalData.moneroAddress =
-        moneroEngine.walletInfo.keys.beldexAddress
+        moneroEngine.walletInfo.keys.moneroAddress
       moneroEngine.walletLocalData.moneroViewKeyPrivate =
-        moneroEngine.walletInfo.keys.beldexViewKeyPrivate
+        moneroEngine.walletInfo.keys.moneroViewKeyPrivate
       moneroEngine.walletLocalData.moneroViewKeyPublic =
-        moneroEngine.walletInfo.keys.beldexViewKeyPublic
+        moneroEngine.walletInfo.keys.moneroViewKeyPublic
       moneroEngine.walletLocalData.moneroSpendKeyPublic =
-        moneroEngine.walletInfo.keys.beldexSpendKeyPublic
+        moneroEngine.walletInfo.keys.moneroSpendKeyPublic
     } catch (err) {
       try {
         opts.log(err)
         opts.log('No walletLocalData setup yet: Failure is ok')
         moneroEngine.walletLocalData = new WalletLocalData(null)
         moneroEngine.walletLocalData.moneroAddress =
-          moneroEngine.walletInfo.keys.beldexAddress
+          moneroEngine.walletInfo.keys.moneroAddress
         moneroEngine.walletLocalData.moneroViewKeyPrivate =
-          moneroEngine.walletInfo.keys.beldexViewKeyPrivate
+          moneroEngine.walletInfo.keys.moneroViewKeyPrivate
         moneroEngine.walletLocalData.moneroViewKeyPublic =
-          moneroEngine.walletInfo.keys.beldexViewKeyPublic
+          moneroEngine.walletInfo.keys.moneroViewKeyPublic
         moneroEngine.walletLocalData.moneroSpendKeyPublic =
-          moneroEngine.walletInfo.keys.beldexSpendKeyPublic
+          moneroEngine.walletInfo.keys.moneroSpendKeyPublic
         await moneroEngine.walletLocalDisklet.setText(
           DATA_STORE_FILE,
           JSON.stringify(moneroEngine.walletLocalData)
