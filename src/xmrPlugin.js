@@ -87,10 +87,10 @@ async function makeMoneroTools(
           walletInfo.keys.moneroKey
         )
         return {
-          beldexAddress: result.moneroAddress,
-          beldexViewKeyPrivate: result.moneroViewKeyPrivate,
-          beldexViewKeyPublic: result.moneroViewKeyPublic,
-          beldexSpendKeyPublic: result.moneroSpendKeyPublic
+          moneroAddress: result.moneroAddress,
+          moneroViewKeyPrivate: result.moneroViewKeyPrivate,
+          moneroViewKeyPublic: result.moneroViewKeyPublic,
+          moneroSpendKeyPublic: result.moneroSpendKeyPublic
         }
       } else {
         throw new Error('InvalidWalletType')
@@ -259,26 +259,26 @@ export function makeBeldexPlugin(
       )
       moneroEngine.walletLocalData = new WalletLocalData(result)
       moneroEngine.walletLocalData.moneroAddress =
-        moneroEngine.walletInfo.keys.moneroAddress
+        moneroEngine.walletInfo.keys.beldexAddress
       moneroEngine.walletLocalData.moneroViewKeyPrivate =
-        moneroEngine.walletInfo.keys.moneroViewKeyPrivate
+        moneroEngine.walletInfo.keys.beldexViewKeyPrivate
       moneroEngine.walletLocalData.moneroViewKeyPublic =
-        moneroEngine.walletInfo.keys.moneroViewKeyPublic
+        moneroEngine.walletInfo.keys.beldexViewKeyPublic
       moneroEngine.walletLocalData.moneroSpendKeyPublic =
-        moneroEngine.walletInfo.keys.moneroSpendKeyPublic
+        moneroEngine.walletInfo.keys.beldexSpendKeyPublic
     } catch (err) {
       try {
         opts.log(err)
         opts.log('No walletLocalData setup yet: Failure is ok')
         moneroEngine.walletLocalData = new WalletLocalData(null)
         moneroEngine.walletLocalData.moneroAddress =
-          moneroEngine.walletInfo.keys.moneroAddress
+          moneroEngine.walletInfo.keys.beldexAddress
         moneroEngine.walletLocalData.moneroViewKeyPrivate =
-          moneroEngine.walletInfo.keys.moneroViewKeyPrivate
+          moneroEngine.walletInfo.keys.beldexViewKeyPrivate
         moneroEngine.walletLocalData.moneroViewKeyPublic =
-          moneroEngine.walletInfo.keys.moneroViewKeyPublic
+          moneroEngine.walletInfo.keys.beldexViewKeyPublic
         moneroEngine.walletLocalData.moneroSpendKeyPublic =
-          moneroEngine.walletInfo.keys.moneroSpendKeyPublic
+          moneroEngine.walletInfo.keys.beldexSpendKeyPublic
         await moneroEngine.walletLocalDisklet.setText(
           DATA_STORE_FILE,
           JSON.stringify(moneroEngine.walletLocalData)
