@@ -20,10 +20,10 @@ export class WalletLocalData {
   lockedXmrBalance: string
   nextNonce: string
   hasLoggedIn: boolean
-  moneroAddress: string
-  moneroViewKeyPrivate: string
-  moneroViewKeyPublic: string
-  moneroSpendKeyPublic: string
+  beldexAddress: string
+  beldexViewKeyPrivate: string
+  beldexViewKeyPublic: string
+  beldexSpendKeyPublic: string
   totalBalances: { [currencyCode: string]: string }
   enabledTokens: string[]
   transactionsObj: { [currencyCode: string]: EdgeTransaction[] }
@@ -45,10 +45,10 @@ export class WalletLocalData {
     } = {}
     this.transactionsObj = transactionsObj
 
-    this.moneroAddress = ''
-    this.moneroViewKeyPrivate = ''
-    this.moneroViewKeyPublic = ''
-    this.moneroSpendKeyPublic = ''
+    this.beldexAddress = ''
+    this.beldexViewKeyPrivate = ''
+    this.beldexViewKeyPublic = ''
+    this.beldexSpendKeyPublic = ''
     this.hasLoggedIn = false
     this.enabledTokens = [PRIMARY_CURRENCY]
     if (jsonString !== null) {
@@ -66,17 +66,17 @@ export class WalletLocalData {
       if (typeof data.lockedXmrBalance === 'string') {
         this.lockedXmrBalance = data.lockedXmrBalance
       }
-      if (typeof data.moneroAddress === 'string') {
-        this.moneroAddress = data.moneroAddress
+      if (typeof data.beldexAddress === 'string') {
+        this.beldexAddress = data.beldexAddress
       }
-      if (typeof data.moneroViewKeyPrivate === 'string') {
-        this.moneroViewKeyPrivate = data.moneroViewKeyPrivate
+      if (typeof data.beldexViewKeyPrivate === 'string') {
+        this.beldexViewKeyPrivate = data.beldexViewKeyPrivate
       }
-      if (typeof data.moneroViewKeyPublic === 'string') {
-        this.moneroViewKeyPublic = data.moneroViewKeyPublic
+      if (typeof data.beldexViewKeyPublic === 'string') {
+        this.beldexViewKeyPublic = data.beldexViewKeyPublic
       }
-      if (typeof data.moneroSpendKeyPublic === 'string') {
-        this.moneroSpendKeyPublic = data.moneroSpendKeyPublic
+      if (typeof data.beldexSpendKeyPublic === 'string') {
+        this.beldexSpendKeyPublic = data.beldexSpendKeyPublic
       }
       if (typeof data.totalBalances !== 'undefined') {
         this.totalBalances = data.totalBalances
