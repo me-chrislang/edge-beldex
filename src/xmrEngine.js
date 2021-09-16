@@ -115,16 +115,16 @@ class MoneroEngine {
 
   async init() {
     if (
-      typeof this.walletInfo.keys.beldexAddress !== 'string' ||
-      typeof this.walletInfo.keys.beldexViewKeyPrivate !== 'string' ||
-      typeof this.walletInfo.keys.beldexViewKeyPublic !== 'string' ||
-      typeof this.walletInfo.keys.beldexSpendKeyPublic !== 'string'
+      typeof this.walletInfo.keys.moneroAddress !== 'string' ||
+      typeof this.walletInfo.keys.moneroViewKeyPrivate !== 'string' ||
+      typeof this.walletInfo.keys.moneroViewKeyPublic !== 'string' ||
+      typeof this.walletInfo.keys.moneroSpendKeyPublic !== 'string'
     ) {
       const pubKeys = await this.currencyPlugin.derivePublicKey(this.walletInfo)
-      this.walletInfo.keys.beldexAddress = pubKeys.beldexAddress
-      this.walletInfo.keys.beldexViewKeyPrivate = pubKeys.beldexViewKeyPrivate
-      this.walletInfo.keys.beldexViewKeyPublic = pubKeys.beldexViewKeyPublic
-      this.walletInfo.keys.beldexSpendKeyPublic = pubKeys.beldexSpendKeyPublic
+      this.walletInfo.keys.moneroAddress = pubKeys.moneroAddress
+      this.walletInfo.keys.moneroViewKeyPrivate = pubKeys.moneroViewKeyPrivate
+      this.walletInfo.keys.moneroViewKeyPublic = pubKeys.moneroViewKeyPublic
+      this.walletInfo.keys.moneroSpendKeyPublic = pubKeys.moneroSpendKeyPublic
     }
   }
 
@@ -158,8 +158,8 @@ class MoneroEngine {
       {},
       {
         api_key: this.myMoneroApi.options.apiKey,
-        address: this.walletLocalData.beldexAddress,
-        view_key: this.walletLocalData.beldexViewKeyPrivate,
+        address: this.walletLocalData.moneroAddress,
+        view_key: this.walletLocalData.moneroViewKeyPrivate,
         create_account: true
       },
       params
@@ -221,10 +221,10 @@ class MoneroEngine {
   async checkAddressInnerLoop() {
     try {
       const params: QueryParams = {
-        moneroAddress: this.walletLocalData.beldexAddress,
-        moneroSpendKeyPrivate: this.walletInfo.keys.beldexSpendKeyPrivate,
-        moneroSpendKeyPublic: this.walletInfo.keys.beldexSpendKeyPublic,
-        moneroViewKeyPrivate: this.walletLocalData.beldexViewKeyPrivate
+        moneroAddress: this.walletLocalData.moneroAddress,
+        moneroSpendKeyPrivate: this.walletInfo.keys.moneroSpendKeyPrivate,
+        moneroSpendKeyPublic: this.walletInfo.keys.moneroSpendKeyPublic,
+        moneroViewKeyPrivate: this.walletLocalData.moneroViewKeyPrivate
       }
 
       const addrResult = await this.myMoneroApi.getAddressInfo(params)
@@ -249,7 +249,7 @@ class MoneroEngine {
       this.walletLocalData.lockedXmrBalance = addrResult.lockedBalance
     } catch (e) {
       this.log.error(
-        'Error fetching address info: ' + this.walletLocalData.beldexAddress + e
+        'Error fetching address info: ' + this.walletLocalData.moneroAddress + e
       )
     }
   }
@@ -264,7 +264,7 @@ class MoneroEngine {
       nativeNetworkFee
     )
     if (netNativeAmount.slice(0, 1) !== '-') {
-      ourReceiveAddresses.push(this.walletLocalData.beldexAddress.toLowerCase())
+      ourReceiveAddresses.push(this.walletLocalData.moneroAddress.toLowerCase())
     }
 
     let blockHeight = tx.height
@@ -337,10 +337,10 @@ class MoneroEngine {
 
     try {
       const params: QueryParams = {
-        moneroAddress: this.walletLocalData.beldexAddress,
-        moneroSpendKeyPrivate: this.walletInfo.keys.beldexSpendKeyPrivate,
-        moneroSpendKeyPublic: this.walletInfo.keys.beldexSpendKeyPublic,
-        moneroViewKeyPrivate: this.walletLocalData.beldexViewKeyPrivate
+        moneroAddress: this.walletLocalData.moneroAddress,
+        moneroSpendKeyPrivate: this.walletInfo.keys.moneroSpendKeyPrivate,
+        moneroSpendKeyPublic: this.walletInfo.keys.moneroSpendKeyPublic,
+        moneroViewKeyPrivate: this.walletLocalData.moneroViewKeyPrivate
       }
       this.log.warn('Fetched params', params, 'and wallet keys', JSON.stringify(this.walletInfo.keys))
       const transactions = await this.myMoneroApi.getTransactions(params)
@@ -501,8 +501,8 @@ class MoneroEngine {
     const temp = JSON.stringify({
       enabledTokens: this.walletLocalData.enabledTokens,
       // networkFees: this.walletLocalData.networkFees,
-      beldexAddress: this.walletLocalData.beldexAddress,
-      beldexViewKeyPrivate: this.walletLocalData.beldexViewKeyPrivate
+      moneroAddress: this.walletLocalData.moneroAddress,
+      moneroViewKeyPrivate: this.walletLocalData.moneroViewKeyPrivate
     })
     this.walletLocalData = new WalletLocalData(temp)
     this.walletLocalDataDirty = true
@@ -656,7 +656,7 @@ class MoneroEngine {
   // synchronous
   getFreshAddress(options: any): EdgeFreshAddress {
     if (this.walletLocalData.hasLoggedIn) {
-      return { publicAddress: this.walletLocalData.beldexAddress }
+      return { publicAddress: this.walletLocalData.moneroAddress }
     } else {
       return { publicAddress: '' }
     }
@@ -784,13 +784,13 @@ class MoneroEngine {
       const amountFloat = parseFloat(amountFloatString)
       this.log.warn('spendingLog Amount', amountFloat)
       sendParams = {
-        moneroAddress: this.walletLocalData.beldexAddress,
+        moneroAddress: this.walletLocalData.moneroAddress,
         moneroSpendKeyPrivate: '',
-        moneroSpendKeyPublic: this.walletInfo.keys.beldexSpendKeyPublic,
-        moneroViewKeyPrivate: this.walletLocalData.beldexViewKeyPrivate,
+        moneroSpendKeyPublic: this.walletInfo.keys.moneroSpendKeyPublic,
+        moneroViewKeyPrivate: this.walletLocalData.moneroViewKeyPrivate,
         targetAddress: publicAddress,
         floatAmount: amountFloat,
-        moneroViewKeyPublic: this.walletLocalData.beldexViewKeyPublic,
+        moneroViewKeyPublic: this.walletLocalData.moneroViewKeyPublic,
         nettype: 'mainnet', // 'mainnet' only for now
         isSweepTx: false,
         paymentId: uniqueIdentifier || '',
@@ -800,7 +800,7 @@ class MoneroEngine {
       this.log.warn('spendingLog send params', JSON.stringify(sendParams))
       result = await this.myMoneroApi.sendFunds(
         Object.assign({}, sendParams, {
-          moneroSpendKeyPrivate: this.walletInfo.keys.beldexSpendKeyPrivate,
+          moneroSpendKeyPrivate: this.walletInfo.keys.moneroSpendKeyPrivate,
           onStatus: (code: number) => {
             this.log.warn(`makeSpend:SendFunds - onStatus:${code.toString()}`)
           }
@@ -855,7 +855,7 @@ class MoneroEngine {
       sendParams.doBroadcast = true
       const result = await this.myMoneroApi.sendFunds(
         Object.assign({}, sendParams, {
-          moneroSpendKeyPrivate: this.walletInfo.keys.beldexSpendKeyPrivate,
+          moneroSpendKeyPrivate: this.walletInfo.keys.moneroSpendKeyPrivate,
           onStatus: (code: number) => {
             this.log.warn(`broadcastTx:SendFunds - onStatus:${code.toString()}`)
           }
@@ -890,15 +890,15 @@ class MoneroEngine {
   }
 
   getDisplayPrivateSeed() {
-    if (this.walletInfo.keys && this.walletInfo.keys.beldexKey) {
-      return this.walletInfo.keys.beldexKey
+    if (this.walletInfo.keys && this.walletInfo.keys.moneroKey) {
+      return this.walletInfo.keys.moneroKey
     }
     return ''
   }
 
   getDisplayPublicSeed() {
-    if (this.walletInfo.keys && this.walletInfo.keys.beldexViewKeyPrivate) {
-      return this.walletInfo.keys.beldexViewKeyPrivate
+    if (this.walletInfo.keys && this.walletInfo.keys.moneroViewKeyPrivate) {
+      return this.walletInfo.keys.moneroViewKeyPrivate
     }
     return ''
   }
