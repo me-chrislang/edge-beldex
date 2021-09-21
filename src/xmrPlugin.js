@@ -54,7 +54,7 @@ async function makeMoneroTools(
     appUserAgentProduct: 'tester',
     appUserAgentVersion: '0.0.1',
     apiKey: initOptions.apiKey,
-    apiServer: 'https://edge.beldex.io',
+    apiServer: 'https://walapi.beldex.io',
     fetch: io.fetch,
     randomBytes: io.random
   }
