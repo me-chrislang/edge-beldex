@@ -226,7 +226,7 @@ export function makeBeldexPlugin(
   opts: EdgeCorePluginOptions
 ): EdgeCurrencyPlugin {
   const { io, nativeIo, initOptions = { apiKey: '' } } = opts
-
+  opts.log.warn('in xmrPlugin io is', io)
   if (nativeIo['edge-currency-beldex']) {
     const { callBeldex } = nativeIo['edge-currency-beldex']
     global.beldexCore = { methodByString: callBeldex }
@@ -257,6 +257,7 @@ export function makeBeldexPlugin(
       const result = await moneroEngine.walletLocalDisklet.getText(
         DATA_STORE_FILE
       )
+      opts.log.warn('in xmrPlugin after init called', result)
       moneroEngine.walletLocalData = new WalletLocalData(result)
       moneroEngine.walletLocalData.moneroAddress =
         moneroEngine.walletInfo.keys.moneroAddress
@@ -268,8 +269,8 @@ export function makeBeldexPlugin(
         moneroEngine.walletInfo.keys.moneroSpendKeyPublic
     } catch (err) {
       try {
-        opts.log(err)
-        opts.log('No walletLocalData setup yet: Failure is ok')
+        opts.log.warn(err)
+        opts.log.warn('No walletLocalData setup yet: Failure is ok')
         moneroEngine.walletLocalData = new WalletLocalData(null)
         moneroEngine.walletLocalData.moneroAddress =
           moneroEngine.walletInfo.keys.moneroAddress
